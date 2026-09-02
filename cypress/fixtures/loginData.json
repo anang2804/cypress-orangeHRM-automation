@@ -1,0 +1,9 @@
+{
+  "validUsername": "Admin",
+  "invalidUsername": "User",
+  "lowerCaseUsername": "ADMIN",
+  "validPassword": "admin123",
+  "invalidPassword": "admin1234",
+  "invalidAlert": "Invalid credentials",
+  "requiredAlert": "Required"
+}
