@@ -1,0 +1,11 @@
+{
+  "searchUser": {
+    "validUsername": "Admin",
+    "invalidUsername": "UserTidakAda123",
+    "usernameWithSpaces": "  Admin  "
+  },
+  "filter": {
+    "role": "Admin",
+    "status": "Enabled"
+  }
+}
