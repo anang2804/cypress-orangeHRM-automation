@@ -1,0 +1,11 @@
+{
+  "search": {
+    "validName": "Rebecca  Harmony",
+    "invalidName": "TestUserXYZ"
+  },
+  "addEmployee": {
+    "firstName": "Anang",
+    "lastName": "Ardiansyah",
+    "duplicateEmployeeId": "0042"
+  }
+}
