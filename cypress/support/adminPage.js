@@ -1,4 +1,12 @@
 class AdminPage {
+  openAdminMenu() {
+    cy.contains("span", "Admin").click();
+  }
+
+  adminUrlValidation() {
+    cy.url().should("include", "/viewSystemUsers");
+  }
+
   visitUserManagement() {
     cy.visit("/web/index.php/admin/viewSystemUsers");
   }
@@ -17,6 +25,19 @@ class AdminPage {
       .parents(".oxd-input-group")
       .find("input")
       .should("have.value", username);
+  }
+
+  // Username Column
+  getUsernameColumnValues() {
+    return cy.get(
+      ".oxd-table-body .oxd-table-row .oxd-table-cell:nth-child(2)",
+    );
+  }
+
+  getUsernameList() {
+    return this.getUsernameColumnValues().then(($cells) => {
+      return Cypress._.map($cells, (el) => el.innerText.trim());
+    });
   }
 
   // User Role
@@ -39,6 +60,21 @@ class AdminPage {
     cy.contains(".oxd-select-option", status).click();
   }
 
+  // Default value validation (setelah Reset)
+  verifyUserRoleDefault() {
+    cy.contains("label", "User Role")
+      .parents(".oxd-input-group")
+      .find(".oxd-select-text")
+      .should("contain.text", "-- Select --");
+  }
+
+  verifyStatusDefault() {
+    cy.contains("label", "Status")
+      .parents(".oxd-input-group")
+      .find(".oxd-select-text")
+      .should("contain.text", "-- Select --");
+  }
+
   // Buttons
   clickSearchBtn() {
     cy.contains("button", "Search").click();
@@ -54,7 +90,7 @@ class AdminPage {
   }
 
   verifyResultExists() {
-    this.resultRows().should("have.length.greaterThan", 0);
+    this.resultRows().its("length").should("be.gt", 0);
   }
 
   verifyNoRecordsFound() {

@@ -4,10 +4,11 @@ import adminData from "../fixtures/adminData.json";
 
 describe("OrangeHRM - Admin User Management", () => {
   beforeEach(() => {
-    loginPage.login();
-    adminPage.visitUserManagement();
-
     cy.intercept("GET", "**/api/v2/admin/users*").as("searchUsers");
+
+    loginPage.login();
+    adminPage.openAdminMenu();
+    adminPage.adminUrlValidation();
   });
 
   // TC-ADM-001
@@ -16,7 +17,6 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     cy.contains(adminData.searchUser.validUsername).should("be.visible");
   });
 
@@ -26,7 +26,6 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     adminPage.verifyNoRecordsFound();
   });
 
@@ -36,7 +35,6 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     adminPage.verifyResultExists();
   });
 
@@ -46,7 +44,6 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     adminPage.verifyResultExists();
   });
 
@@ -58,31 +55,46 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     cy.contains(adminData.searchUser.validUsername).should("be.visible");
   });
 
   // TC-ADM-006
   it("TC-ADM-006 - Reset filter setelah hasil pencarian ditampilkan", () => {
     adminPage.typeUsername(adminData.searchUser.validUsername);
+    adminPage.selectUserRole(adminData.filter.role);
+    adminPage.selectStatus(adminData.filter.status);
     adminPage.clickSearchBtn();
 
     adminPage.clickResetBtn();
 
     adminPage.verifyUsernameFieldValue("");
+    adminPage.verifyUserRoleDefault();
+    adminPage.verifyStatusDefault();
   });
 
   // TC-ADM-007
   it("TC-ADM-007 - Verifikasi sorting Username ascending dan descending", () => {
     adminPage.clickUsernameSortDropdown();
     adminPage.clickSortAscending();
-
     adminPage.verifyResultExists();
+
+    adminPage.getUsernameList().then((list) => {
+      const sortedAsc = [...list].sort((a, b) =>
+        a.localeCompare(b, undefined, { sensitivity: "base" }),
+      );
+      expect(list).to.deep.equal(sortedAsc);
+    });
 
     adminPage.clickUsernameSortDropdown();
     adminPage.clickSortDescending();
-
     adminPage.verifyResultExists();
+
+    adminPage.getUsernameList().then((list) => {
+      const sortedDesc = [...list].sort((a, b) =>
+        b.localeCompare(a, undefined, { sensitivity: "base" }),
+      );
+      expect(list).to.deep.equal(sortedDesc);
+    });
   });
 
   // TC-ADM-008
@@ -91,7 +103,6 @@ describe("OrangeHRM - Admin User Management", () => {
     adminPage.clickSearchBtn();
 
     cy.wait("@searchUsers").its("response.statusCode").should("eq", 200);
-
     cy.contains(adminData.searchUser.validUsername).should("be.visible");
   });
 });
