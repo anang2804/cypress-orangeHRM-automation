@@ -11,14 +11,6 @@ Project automation testing End-to-End (E2E) untuk website OrangeHRM menggunakan 
 | Claim    | 8                   |
 | **Total**| **24**              |
 
-## 🚀 Tech Stack
-
-- Node.js
-- Cypress
-- JavaScript
-- JSON Fixtures
-- Page Object Model (POM)
-
 ## 📁 Struktur Folder
 
 ```
@@ -103,4 +95,4 @@ Tujuan project ini adalah mengotomasi functional testing pada aplikasi web Orang
 
 ## 👤 Author
 
-[Nama Anda]
+Moch. Anang Ardiansyah
