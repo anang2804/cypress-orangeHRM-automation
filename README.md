@@ -2,23 +2,35 @@
 Project automation testing End-to-End (E2E) untuk website OrangeHRM menggunakan Cypress dan JavaScript. Project ini menerapkan pola Page Object Model (POM) untuk membuat script test yang reusable, maintainable, dan terorganisir pada tiga modul OrangeHRM.
 
 📌 Ringkasan Project
+<<<<<<< HEAD
 📂 Modul ✅ Jumlah Test Case
 Admin 8
 PIM 8
 Claim 8
 Total 24
 
+=======
+📂 Modul	✅ Jumlah Test Case
+Admin	8
+PIM	8
+Claim	8
+Total	24
+>>>>>>> 6a9a217e796c7c9820ccb53f3d888eb33507f38f
 🚀 Tech Stack
 Node.js
 Cypress
 JavaScript
 JSON Fixtures
 Page Object Model (POM)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a9a217e796c7c9820ccb53f3d888eb33507f38f
 📁 Struktur Folder
 cypress-orangehrm-automation
 │
 ├── cypress
+<<<<<<< HEAD
 │ ├── e2e
 │ │ ├── adminPage.cy.js
 │ │ ├── pimPage.cy.js
@@ -36,11 +48,33 @@ cypress-orangehrm-automation
 │ ├── adminPage.js
 │ ├── pimPage.js
 │ └── claimPage.js
+=======
+│   ├── e2e
+│   │   ├── adminPage.cy.js
+│   │   ├── pimPage.cy.js
+│   │   └── claimPage.cy.js
+│   │
+│   ├── fixtures
+│   │   ├── adminData.json
+│   │   ├── pimData.json
+│   │   └── claimData.json
+│   │
+│   └── support
+│       ├── commands.js
+│       ├── e2e.js
+│       ├── loginPage.js
+│       ├── adminPage.js
+│       ├── pimPage.js
+│       └── claimPage.js
+>>>>>>> 6a9a217e796c7c9820ccb53f3d888eb33507f38f
 │
 ├── cypress.config.js
 ├── package.json
 └── package-lock.json
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a9a217e796c7c9820ccb53f3d888eb33507f38f
 🧩 Test Coverage
 👤 Modul Admin (8 Test Case)
 TC-ADM-001 — Search user menggunakan Username yang valid
