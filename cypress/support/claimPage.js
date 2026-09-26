@@ -90,6 +90,7 @@ class ClaimPage {
       .parents(".oxd-input-group")
       .find(".oxd-select-text")
       .click();
+    cy.get(".oxd-select-option").should("have.length.greaterThan", 0);
     cy.contains(".oxd-select-option", event).click();
   }
 
